@@ -1,0 +1,21 @@
+---
+title: "deandevl"
+listing:
+  contents: posts
+  sort: "date"
+  type: default
+  fields: [date, title, description]
+  categories: true
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: true
+editor: source
+---
+
+## Welcome to the deandvl blog
+
+From the great state of Kentucky, welcome and thank you for stopping by. I'm Rick Dean with a lot of interest in computer programming on one side of my brain and the challenge of small fruit farming on the other. Along with some of my development work, this blog catalogs and reviews many articles that I found interesting and maybe you too. They helped me in my learning and exercise new ideas.
+
+For my own work you'll find here descriptions of R packages in data wrangling, visualization, and access. Examples include easier access to US Census Bureau data; using ggplot2 in a functional, less code-tree like manner; assisting in the joining of data with geo-mapping; and examples that promote the powerful [data.table](https://rdatatable.gitlab.io/data.table/) package for data wrangling.
+

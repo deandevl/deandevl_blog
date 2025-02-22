@@ -1,0 +1,12 @@
+---
+title: "About"
+about:
+  template: solana
+  image: RickColor.jpg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/deandevl
+editor: source
+---
+As a retired person with employment in the data sciences, small fruit farming occupies much of my time -- for over 30 years across the states of Alabama and Kentucky. From strawberries, blueberries, blackberries to asparagus/rhubarb and now flowers, I love to grow things and see people enjoy picking them. The farm [Fairfield Fruits](https://fairfieldfruits.com/) is located in northern Kentucky and starts the season with pick-your-own strawberries in late May.

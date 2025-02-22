@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "deandevl",
+    "section": "",
+    "text": "From the great state of Kentucky, welcome and thank you for stopping by. I’m Rick Dean with a lot of interest in computer programming on one side of my brain and the challenge of small fruit farming on the other. Along with some of my development work, this blog catalogs and reviews many articles that I found interesting and maybe you too. They helped me in my learning and exercise new ideas.\nFor my own work you’ll find here descriptions of R packages in data wrangling, visualization, and access. Examples include easier access to US Census Bureau data; using ggplot2 in a functional, less code-tree like manner; assisting in the joining of data with geo-mapping; and examples that promote the powerful data.table package for data wrangling."
+  },
+  {
+    "objectID": "index.html#welcome-to-the-deandvl-blog",
+    "href": "index.html#welcome-to-the-deandvl-blog",
+    "title": "deandevl",
+    "section": "",
+    "text": "From the great state of Kentucky, welcome and thank you for stopping by. I’m Rick Dean with a lot of interest in computer programming on one side of my brain and the challenge of small fruit farming on the other. Along with some of my development work, this blog catalogs and reviews many articles that I found interesting and maybe you too. They helped me in my learning and exercise new ideas.\nFor my own work you’ll find here descriptions of R packages in data wrangling, visualization, and access. Examples include easier access to US Census Bureau data; using ggplot2 in a functional, less code-tree like manner; assisting in the joining of data with geo-mapping; and examples that promote the powerful data.table package for data wrangling."
+  },
+  {
+    "objectID": "posts/rplotterpkg/index.html",
+    "href": "posts/rplotterpkg/index.html",
+    "title": "RplotterPkg Examples",
+    "section": "",
+    "text": "The goal of RplotterPkg is to provide easy access to the many ggplot2 geom plotting routines for everyday use. The package uses a functional approach along with the fast, efficient data frame processing from data.table."
+  },
+  {
+    "objectID": "posts/rplotterpkg/index.html#installation",
+    "href": "posts/rplotterpkg/index.html#installation",
+    "title": "RplotterPkg Examples",
+    "section": "Installation",
+    "text": "Installation\nFor the following examples, install the development version of RplotterPkg from GitHub with:\nUsing pak::pak():\npak::pak(\"deandevl/RplotterPkg\")\nUsing devtools::install_github():\ndevtools::install_github(\"deandevl/RplotterPkg\")"
+  },
+  {
+    "objectID": "posts/rplotterpkg/index.html#setup",
+    "href": "posts/rplotterpkg/index.html#setup",
+    "title": "RplotterPkg Examples",
+    "section": "Setup",
+    "text": "Setup\nIn addition, load the required R script libraries from CRAN.\n\nlibrary(data.table)\nlibrary(grid)\nlibrary(gtable)\nlibrary(ggplotify)\nlibrary(ggplot2)\nlibrary(methods)\nlibrary(RColorBrewer)\nlibrary(aplpack)"
+  },
+  {
+    "objectID": "posts/rplotterpkg/index.html#standard-plotting",
+    "href": "posts/rplotterpkg/index.html#standard-plotting",
+    "title": "RplotterPkg Examples",
+    "section": "Standard Plotting",
+    "text": "Standard Plotting\nRplotterPkg offers many of the standard plotting such as scatter, box, density, histogram, range, heatmap, and stick plots. The following example shows how easy it is to assign an x axis variable and label for a bar plot.\n\nRplotterPkg::create_bar_plot(\n  df = datasets::ToothGrowth,\n  aes_x = \"len\",\n  x_major_breaks = seq(from = 0, to = 40, by = 5),\n  y_major_breaks = seq(from = 0, to = 16, by = 2),\n  y_limits = c(0, 16),\n  bar_labels = TRUE,\n  bar_fill = \"blue\",\n  bar_alpha = 0.6,\n  do_coord_flip = TRUE,\n  rot_y_tic_label = TRUE,\n  title = \"Tooth Growth\",\n  subtitle = \"source: datasets::ToothGrowth\",\n  x_title = \"Length\",\n  y_title = \"Count\",\n  caption = \"RplotterPkg::create_bar_plot example\"\n)\n\n\n\n\n\n\n\n\nCreating a minimal heatmap just requires assigning a dataframe along with column names for the x/y axis’ and a dependent variable.\n\nRplotterPkg::create_heatmap(\n    df = RplotterPkg::spinrates,\n    aes_x = \"velocity\",\n    aes_y = \"spinrate\",\n    aes_fill = \"swing_miss\",\n    aes_label = \"swing_miss\",\n    label_fontface = \"bold\",\n    title = \"Likelihood of swinging and missing on a fastball\",\n    x_title = \"Velocity\",\n    y_title = \"Spinrate\",\n    rot_y_tic_label = TRUE,\n    caption = \"Rplotter::create_heatmap example\"\n  ) +\n  ggplot2::scale_fill_gradientn(\n    colors = RColorBrewer::brewer.pal(n = 9, name = \"YlOrRd\"),\n    n.breaks = 8\n  )"
+  },
+  {
+    "objectID": "posts/rplotterpkg/index.html#additional-plotting",
+    "href": "posts/rplotterpkg/index.html#additional-plotting",
+    "title": "RplotterPkg Examples",
+    "section": "Additional Plotting",
+    "text": "Additional Plotting\nAlso included with RplotterPkg are routines that are not always available such as spread_level, symmetry, stem_leaf, waffle, and multi-paneled plots. In the examples below we have a waffle plot of simple proportions and a stem_leaf plot comparing women Boston marathon times by age groups.\n\nproportions_v &lt;- c(\n  var1=10, var2=40, var3=20, var4=50, var5=5,\n  var6=30, var7=10, var8=67, var9=42, var10=33,\n  var11=7, var12=35, var13=22, var14=90, var15=43\n)\n\nRplotterPkg::create_waffle_chart(\n  x = proportions_v,\n  title = \"Test For 15 Proportion Variables\",\n)\n\n\n\n\n\n\n\n\n\nmarathon_times_lst &lt;- list(\n  \"age_20\" = RplotterPkg::boston_marathon[age == 20,]$time,\n  \"age_30\" = RplotterPkg::boston_marathon[age == 30,]$time,\n  \"age_40\" = RplotterPkg::boston_marathon[age == 40,]$time,\n  \"age_50\" = RplotterPkg::boston_marathon[age == 50,]$time,\n  \"age_60\" = RplotterPkg::boston_marathon[age == 60,]$time\n)\n\nRplotterPkg::stem_leaf_display(\n  x = marathon_times_lst,\n  title = \"Women times(min) in Boston marathon\",\n  heading_color = \"#FF5500\"\n)"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "As a retired person with employment in the data sciences, small fruit farming occupies much of my time – for over 30 years across the states of Alabama and Kentucky. From strawberries, blueberries, blackberries to asparagus/rhubarb and now flowers, I love to grow things and see people enjoy picking them. The farm Fairfield Fruits is located in northern Kentucky and starts the season with pick-your-own strawberries in late May."
+  },
+  {
+    "objectID": "posts/rcensuspkg/index.html",
+    "href": "posts/rcensuspkg/index.html",
+    "title": "RcensusPkg",
+    "section": "",
+    "text": "The goal of RcensusPkg is to provide easy access to the US Census Bureau’s datasets and collection of TIGER/Line Shapefiles providing plot geometries for states, counties, roads, landmarks, water, enumeration tracts/blocks for the entire United States. The only requirement is for the user to apply for and obtain a free access key issued from the Bureau. See Guidance for Developers for additional information.\nThe example below illustrates a simple workflow for downloading a dataset, merging the data with shapefile geometries, and plotting the merge to create a choropleth map."
+  },
+  {
+    "objectID": "posts/rcensuspkg/index.html#introduction",
+    "href": "posts/rcensuspkg/index.html#introduction",
+    "title": "RcensusPkg",
+    "section": "",
+    "text": "The goal of RcensusPkg is to provide easy access to the US Census Bureau’s datasets and collection of TIGER/Line Shapefiles providing plot geometries for states, counties, roads, landmarks, water, enumeration tracts/blocks for the entire United States. The only requirement is for the user to apply for and obtain a free access key issued from the Bureau. See Guidance for Developers for additional information.\nThe example below illustrates a simple workflow for downloading a dataset, merging the data with shapefile geometries, and plotting the merge to create a choropleth map."
+  },
+  {
+    "objectID": "posts/rcensuspkg/index.html#installation",
+    "href": "posts/rcensuspkg/index.html#installation",
+    "title": "RcensusPkg",
+    "section": "Installation",
+    "text": "Installation\nYou can install the development version of RcensusPkg from GitHub with:\n# install.packages(\"pak\")\npak::pak(\"deandevl/RcensusPkg\")\nUsing devtools::install_github():\ndevtools::install_github(\"deandevl/RcensusPkg\")\nAlso for this example we will need devtools::install_github(\"deandevl/RplotterPkg\")"
+  },
+  {
+    "objectID": "posts/rcensuspkg/index.html#example",
+    "href": "posts/rcensuspkg/index.html#example",
+    "title": "RcensusPkg",
+    "section": "Example",
+    "text": "Example\n\nUS Census Bureau API key\nAll Census Bureau API requests require an access key. Sign-up for a key is free and can be obtained here. The functions will check for a global setting of the key via Sys.getenv(CENSUS_KEY). Run usethis::edit_r_environ() and edit your .Renviron file with the line: CENSUS_KEY=your key to create the global association.\n\n\nSetup\nWe will be using the following packages.\n\nlibrary(httr)\nlibrary(jsonlite)\nlibrary(stringr)\nlibrary(data.table)\nlibrary(withr)\nlibrary(sf)\nlibrary(kableExtra)\nlibrary(ggplot2)\nlibrary(RplotterPkg)\nlibrary(RcensusPkg)\n\n\n\nA look at the US Census Bureau’s community resilience estimates (CRE) database.\nAmong the list of available API, there is the Community Resilience Estimates based on such factors as:\n\nIncome-to-Poverty Ratio (IPR) &lt; 130 percent\nSingle or zero caregiver household\nAged 65 years or older\nNo health insurance coverage\nNo vehicle access (Household)\nDisability, at least one serious constraint to significant life activity\nNo one in the household is employed full-time, year-round\nHouseholds without broadband internet access\nUnit-level crowding with &gt;= 0.75 persons per room\nNo one in the household has received a high school diploma\nNo one in the household speaks English very well\n\nThe factors are used to estimate the number of people with:\n\n0 risk factors (Low risk)\n1-2 risk factors (Medium risk)\n3 or more risk factors (High risk)\n\nThe workflow for using RcensusPkg is the following:\n\nGet a database name recognized by the API. Use RcensusPkg::get_dataset_names() filtering for a resilience title and vintage of 2022.\n\n\ndatasets_dt &lt;- RcensusPkg::get_dataset_names(\n  vintage = 2022,\n  filter_title_str = \"resilience\"\n)\n\n\n\n\nTable 1: resilience datasets\n\n\n\n\n\n\n\nname\nvintage\ntitle\n\n\n\n\ncre\n2022\nCommunity Resilience Estimates\n\n\ncrepuertorico\n2022\nCommunity Resilience Estimates for Puerto Rico\n\n\n\n\n\nThe returned dataframe shows a dataset name for CRE 2022 as (surprise) cre.\n\nGet the variable names available for the cre dataset.\n\n\ncre_var_names_dt &lt;- RcensusPkg::get_variable_names(\n  dataset = \"cre\",\n  vintage = 2022\n) |&gt; \n  _[, .(name, label)]\n\n\n\n\nTable 2: Variable names from the CRE dataset\n\n\n\n\n\n\nname\nlabel\n\n\n\n\nCOUNTY\nGeography\n\n\nGEOCOMP\nGEO_ID Component\n\n\nGEO_ID\nGeographic Identifier\n\n\nNATION\nGeography\n\n\nPOPUNI\nPopulation Universe\n\n\nPRED0_E\nEstimated number of individuals with zero components of social vulnerability\n\n\nPRED0_PE\nRate of individuals with zero components of social vulnerability\n\n\nPRED12_E\nEstimated number of individuals with one-two components of social vulnerability\n\n\nPRED12_PE\nRate of individuals with one-two components of social vulnerability\n\n\nPRED3_E\nEstimated number of individuals with three or more components of social vulnerability\n\n\nPRED3_PE\nRate of individuals with three or more components of social vulnerability\n\n\nSTATE\nGeography\n\n\nSUMLEVEL\nSummary Level code\n\n\nTRACT\nGeography\n\n\nfor\nCensus API FIPS for clause\n\n\nin\nCensus API FIPS in clause\n\n\nucgid\nUniform Census Geography Identifier clause\n\n\n\n\n\nWe are interested in the percentage of individuals with three or more vulnerabilities (PRED3_PE)\n\nGet the regions available for the CRE dataset.\n\n\ncre_regions_dt &lt;- RcensusPkg::get_geography(\n  dataset = \"cre\",\n  vintage = 2022\n)\n\n\n\n\nTable 3: Regions from the CRE dataset\n\n\nname\ngeoLevelDisplay\n\n\n\n\nus\n010\n\n\nstate\n040\n\n\ncounty\n050\n\n\ntract\n140\n\n\n\n\n\nSo we can get CRE estimates from the entire US, state, county, and tract enumeration levels. We are interested in the counties for the state of Florida.\n\nDownload the data:\n\n\nflorida_fips &lt;-  usmap::fips((\"FL\"))\n\nflorida_cre_dt &lt;- RcensusPkg::get_vintage_data(\n  dataset = \"cre\",\n  vintage = 2022,\n  vars = \"PRED3_PE\",\n  region = \"county\",\n  regionin = paste0(\"state:\", florida_fips)\n) |&gt; \n  _[, PRED3_PE := as.numeric(PRED3_PE)] |&gt; \n  data.table::setnames(old = \"PRED3_PE\", new = \"CRE_GE_3\")\n\n\n\n\nTable 4: Florida county percent risk from the CRE dataset\n\n\nNAME\nCRE_GE_3\nstate\ncounty\nGEOID\n\n\n\n\nAlachua County, Florida\n19.29\n12\n001\n12001\n\n\nBaker County, Florida\n22.93\n12\n003\n12003\n\n\nBay County, Florida\n20.05\n12\n005\n12005\n\n\nBradford County, Florida\n24.77\n12\n007\n12007\n\n\nBrevard County, Florida\n20.67\n12\n009\n12009\n\n\nBroward County, Florida\n22.44\n12\n011\n12011\n\n\nCalhoun County, Florida\n31.52\n12\n013\n12013\n\n\nCharlotte County, Florida\n27.53\n12\n015\n12015\n\n\n\n\n\n\nMerge the CRE county data with the Florida county shapefile geographies from the Bureau. Note that we need to establish a folder for receiving the shapefiles.\n\n\noutput_dir &lt;- withr::local_tempdir()\nif(!dir.exists(output_dir)){\n  dir.create(output_dir)\n}\nexpress &lt;- parse(text = paste0(\"STATEFP == \", '\"', florida_fips, '\"'))\ncre_florida_sf &lt;- RcensusPkg::tiger_counties_sf(\n  output_dir = output_dir,\n  vintage = 2022,\n  general = TRUE,\n  express = express,\n  datafile = florida_cre_dt,\n  datafile_key = \"county\"\n)\n\n\nPlot the choropleth map of the percent of individuals with 3 or more risk factors.\n\n\nRplotterPkg::create_sf_plot(\n  sf = cre_florida_sf,\n  aes_fill = \"CRE_GE_3\",\n  hide_x_tics = TRUE,\n  hide_y_tics = TRUE,\n  panel_color = \"white\",\n  panel_border_color = \"white\"\n)\n\n\n\n\nFigure 1: Percent 3 or more risk factors among Florida counties\n\n\n\n\nA more detailed example of the RcensusPkg workflow is available here."
+  }
+]
